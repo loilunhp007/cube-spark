@@ -1,58 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Authorization from './containers/Authorization';
+import Home from './containers/Home';
 
-class App extends React.Component {
-  state = {
-    posts: [],
-    isLoading:true
-  };
 
-  async componentDidMount(){
-    const response = await fetch('/api/employees');
-    const body = await response.json();
-    this.setState({posts: body, isLoading: false})
-  }
-  render(){
-    const {posted, isLoading} = this.state;
-    const empList = this.state.posts;
-    if(isLoading){
-      return <p>Loading...</p>
-    }
+class App extends Component {
+
+  render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <div className="App-intro">
-            <h2> POST LIST</h2>
-            <div>
-            </div>
-          </div>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route path='/' exact={true} component={Home}/>
+          <Route path='/authorization' exact={true} component={Authorization} />
+        </Switch>
+      </Router>
     )
   }
-}
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
+} 
+//<Route path='/posts' exact={true} component={PostList}/>
 export default App;
