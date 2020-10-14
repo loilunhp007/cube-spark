@@ -47,5 +47,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/eclipse/jee/eclipse/plugins/lazop-api-sdk-1.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse/jee/eclipse/plugins/lazop-api-sdk-1.2.0-sources.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
