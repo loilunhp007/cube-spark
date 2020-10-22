@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Request>
+    <Product>
+        <Attributes>
+            <name>api update product sample</name>
+            <short_description>This is an amazing product</short_description>
+            <delivery_option_sof>Yes</delivery_option_sof>
+            <!--should be set as ‘Yes’ only for products to be delivered by seller-->
+        </Attributes>
+        <Skus>
+            <Sku>
+                <SellerSku>api-create-test-1</SellerSku>
+                <quantity>88</quantity>
+                <price>350</price>
+                <package_length>12</package_length>
+                <package_height>23</package_height>
+                <package_weight>34</package_weight>
+                <package_width>45</package_width>
+                <Images/>
+            </Sku>
+            <Sku>
+                <SellerSku>api-create-test-2</SellerSku>
+                <quantity>44</quantity>
+                <price>488.88</price>
+                <package_length>10</package_length>
+                <package_height>21</package_height>
+                <package_weight>32</package_weight>
+                <package_width>43</package_width>
+                <package_content>this is what's in the box, update</package_content>
+                <Images>
+                    <Image>http://sg.s.alibaba.lzd.co/original/59046bec4d53e74f8ad38d19399205e6.jpg</Image>
+                    <Image>http://sg.s.alibaba.lzd.co/original/179715d3de39a1918b19eec3279dd482.jpg</Image>
+                    <Image>http://sg.s.alibaba.lzd.co/original/e2ae2b41afaf310b51bc5764c17306cd.jpg</Image>
+                </Images>
+            </Sku>
+        </Skus>
+    </Product>
+</Request>

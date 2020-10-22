@@ -16,21 +16,23 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.lazada.lazop.api.LazopClient;
 
+import ch.qos.logback.core.Context;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
-import com.lazada.lazop.api.LazopClient;
-
-import tik.test.cubespark.model.AlbumImages;
-import tik.test.cubespark.model.Dataset;
-import tik.test.cubespark.model.LazProduct;
+import tik.test.cubespark.model.ModelProduct;
 import tik.test.cubespark.model.Product;
+import tik.test.cubespark.repository.SkuRepository;
 import tik.test.cubespark.service.AccessToken;
 import tik.test.cubespark.service.ProductService;
+import tik.test.cubespark.service.SkuService;
 
 @RestController
 @RequestMapping("/auth")
@@ -45,46 +47,15 @@ public class AuthorizationController {
 		return null;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/test")
-	public ResponseEntity<String> test() {
-		Product product = new Product("123","456","789") ;
-		GsonBuilder builder = new GsonBuilder();
-		builder.setPrettyPrinting().serializeNulls();
-		builder.serializeNulls();
-		Gson gson = builder.create();
-		
-		Dataset dataset = new Dataset();
-		dataset.album_id="123";
-		dataset.album_title="album 1";
-		AlbumImages image = new AlbumImages();
-		image.image_id = "1";
-		
-		Collection collection = new ArrayList();
-		collection.add("hello");
-		collection.add(6);
-		collection.add(image);
-		String json = gson.toJson(collection);
-		System.out.println(json);
-		JsonParser parser = new JsonParser();
-		JsonArray jArray = parser.parse(json).getAsJsonArray();
-		
-		String mess = gson.fromJson(jArray.get(0), String.class);
-		int number = gson.fromJson(jArray.get(1), int.class);
-		AlbumImages image2 = gson.fromJson(jArray.get(2), AlbumImages.class);
-		
-		System.out.println(mess +"\n"+ number +"\n"+ image2);
-		System.out.println(jArray.get(2).getAsJsonObject());
-		
-		//dataset.images.add(image);
-		//product.getDataset().add(dataset);
-		
-		//System.out.println(gson.toJson(product));
-		return ResponseEntity.ok(gson.toJson(product));
+	@RequestMapping(value = "testSkuTable", method = RequestMethod.GET)
+	public String getSku() {
+		SkuService skuService = new SkuService();
+		return null;
 	}
-
+	
 	@RequestMapping(value = "/getProducts", method = RequestMethod.GET)
-	public String getProducts() {
-		ProductService productSer = new ProductService();
+	public ResponseEntity<String> getProducts() {
+		ProductService productSer = new ProductService(); //Product service chua code logic business
 		GsonBuilder builder = new GsonBuilder();
 		builder.setPrettyPrinting().serializeNulls();
 		builder.serializeNulls();
@@ -93,10 +64,14 @@ public class AuthorizationController {
 		JsonObject jObject = parser.parse(productSer.getProducts()).getAsJsonObject();
 		JsonObject data = (JsonObject) jObject.get("data");
 		JsonArray jArray = data.get("products").getAsJsonArray();
-		LazProduct pro = gson.fromJson(jArray.get(0), LazProduct.class);
-		System.out.println(pro);
+		
+		ModelProduct product = gson.fromJson(jArray.get(0), ModelProduct.class); //Object chua product
+		//System.out.println(product);
 		//JsonArray arr = jObject.get("quantity").getAsJsonArray();
 		//System.out.println(arr.get(0) + "\n" + arr.get(1));
-		return null;
+		ResponseEntity<String> res = new ResponseEntity<String>( "{}" ,HttpStatus.OK);
+		CorsRegistry cors = new CorsRegistry();
+		cors.addMapping("*").allowedHeaders("*").allowedOrigins("*").allowedMethods("*");
+		return new ResponseEntity<String>( "{\"name\": "+product.getPrimary_category()+"}" ,HttpStatus.OK);
 	}
 }
