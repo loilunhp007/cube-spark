@@ -2,11 +2,11 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
 import FlareIcon from '@material-ui/icons/Flare';
 import {makeStyles} from '@material-ui/styles'
-const useStyles = makeStyles(()=>{{
+const useStyles = makeStyles(()=>({
     typographyStyles: {
         flex: 1
     }
-}});
+}));
 const Header = () => {
     const classes = useStyles();
     return (

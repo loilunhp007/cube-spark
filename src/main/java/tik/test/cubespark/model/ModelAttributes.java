@@ -12,14 +12,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @Setter
 @Getter
-public class LazAttributes {
+@ToString
+public class ModelAttributes {
 	public String name;
 	public String short_description;
 	public String description;
 	public String brand;
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
 }

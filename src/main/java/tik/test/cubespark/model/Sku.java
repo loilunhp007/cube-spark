@@ -1,100 +1,56 @@
 package tik.test.cubespark.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Date;
 
-import com.google.gson.annotations.SerializedName;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@Entity
+@Table(name="sku")
 @Getter
 @Setter
-public class Sku {
-	@SerializedName("_compatible_variation")
-	public String compatibleVariation;
-	public String sellableStock;
-	@SerializedName("SellerSku")
-	public String sellerSku;
-	@SerializedName("ShopSku")
-	public String shopSku;
-	public int occupiedStock;
-	public int dropshippingStock;
-	@SerializedName("Url")
-	public String url;
-	@SerializedName("color_family")
-	public String corlorFamily;
-	@SerializedName("package_height")
-	public String packageHeight;
-	public int price;
-	@SerializedName("package_length")
-	public String packageLength;
-	@SerializedName("special_from_date")
-	public String spacialFromDate;
-	@SerializedName("Available")
-	public int available;
-	public int preorderStock;
-	@SerializedName("special_to_date")
-	public String specialToDate;
-	@SerializedName("Status")
-	public String status;
-	public int quantity;
-	@SerializedName("ReservedStock")
-	public int reservedStock;
-	@SerializedName("Images")
-	public List<String> images = new ArrayList<String>();
-	@SerializedName("special_time_format")
-	public String specialTimeFormat;
-	public int fulfilmentStock;
-	public List<WarehouseInventories> multiWarehouseInventories = new ArrayList<WarehouseInventories>();
-	public String packageWidth;
-	public String specialToTime;
-	public String specialFromTime;
-	public String size;
-	@SerializedName("special_price")
-	public long specialPrice;
-	public int nonsellableStock;
-	public int fulfillmentStock;
-	@SerializedName("package_weight")
-	public String packageWeight;
-	@SerializedName("SkuId")
-	public long skuId;
-	@SerializedName("AllocatedStock")
-	public int allocatedStock;
-	public int withholdingStock;
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-}
-
-class WarehouseInventories{
-	public int quantity;
-	public String warehouseCode;
-	public WarehouseInventories(int quantity, String warehouseCode) {
-		super();
-		this.quantity = quantity;
-		this.warehouseCode = warehouseCode;
-	}
-	public WarehouseInventories() {
-		super();
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public String getWarehouseCode() {
-		return warehouseCode;
-	}
-	public void setWarehouseCode(String warehouseCode) {
-		this.warehouseCode = warehouseCode;
-	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
+@Data
+public class Sku implements Serializable{
+	private static final long serialVersionUID = -297553281792804396L;
+	
+	@Id
+	@Column(name = "ShopSku")
+	private int shopSku;
+	@Column(name="SellerSku")
+	private String sellerSku;
+	@Column(name="Available")
+	private int available;
+	@Column(name="Quantity")
+	private int quantity;
+	@Column(name="ColorFamily")
+	private String colorFamily;
+	@Column(name="Size")
+	private String size;
+	@Column(name="Height")
+	private String height;
+	@Column(name="Width")
+	private String width;
+	@Column(name="Length")
+	private String length;
+	@Column(name="Weight")
+	private String weight;
+	@Column(name="Price")
+	private BigDecimal price;
+	@Column(name="SpecialPrice")
+	private BigDecimal specialPrice;
+	@Column(name="SpecialFromTime")
+	private Date specialFromTime;
+	@Column(name="SpecialToTime")
+	private Date specialToTime;
+	@Column(name="Status")
+	private String status;
 }

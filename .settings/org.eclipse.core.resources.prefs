@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+encoding//client/package.json=UTF-8
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/test/java=UTF-8
+encoding//src/test/java/tik/test/cubespark/product-item-get.json=UTF-8
+encoding//src/test/java/tik/test/cubespark/products-get.json=UTF-8
 encoding/<project>=UTF-8
