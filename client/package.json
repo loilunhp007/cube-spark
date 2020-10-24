@@ -21,7 +21,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "tailwind build public/tailwind.css -o public/style.css",
-    "test:menu": "json-server --watch fake-database.json --port 3001 | react-scripts start"
+    "test:menu": "json-server --watch fake-database.json --port 3001 | react-scripts start",
+    "git": "branch hiện tại là developer"
   },
   "eslintConfig": {
     "extends": "react-app"
