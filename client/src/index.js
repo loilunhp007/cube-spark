@@ -1,9 +1,11 @@
+import ThemeProvider from './ultils/themes/ThemeProvider';
 import React from 'react';
 import {render} from 'react-dom';
-import './index.css';
 import App from './App';
 render(
-    <App />,
+  <ThemeProvider>
+    <App/>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 

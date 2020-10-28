@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
-import FuseNavbar from './components/fuse-navbar/FuseNavbar'
+import FuseNavbar from './components/FuseNavbar/FuseNavbar'
 import Product from './containers/Product'
-import { NotFound } from './containers/errors/NotFound'
+import NotFound from './containers/errors/NotFound'
+import { Button } from '@material-ui/core'
+import { ThemeContext } from './ultils/themes/ThemeProvider'
 
 
 export default function App (){
   const [writers, setWriters] = useState([]);
-	const [testAPI, setTestAPI] = useState({name:null});
+  const [testAPI, setTestAPI] = useState({name:null});
+  const setThemeName = useContext(ThemeContext);
   //Fecth data from server
   async function fetchData(){
     await axios.get('http://localhost:3001/writers?_embed=texts')
@@ -27,8 +30,7 @@ export default function App (){
 			})
 	}
   //componentDidMount
-  useEffect(() => {
-	fetchDataAPI();
+  useEffect(() => {    
     setWriters([
       {
         "id": "ralph-waldo-emerson",
@@ -79,7 +81,7 @@ export default function App (){
     //console.log(writers)
   }, [writers])
   return <BrowserRouter>
-  <FuseNavbar writers={writers}>
+  <FuseNavbar writers={writers} multiTheme={setThemeName}>
     <Switch>
       <Route exact path="/" render={() => <div>name:{testAPI.name}</div>} />
       <Route exact path="/products" render={() => <Product/>} />

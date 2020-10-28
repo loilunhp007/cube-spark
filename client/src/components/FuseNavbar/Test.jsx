@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyle';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 
