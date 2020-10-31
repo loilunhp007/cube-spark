@@ -44,33 +44,33 @@ export const goldenTheme = createMuiTheme(
 				"contrastText": "#41444b"
 			},
 			"secondary": {
-				"light": "#62575d",
-				"main": "#52575d",
-				"dark": "#72575d",
+				"light": "#444f61",
+				"main": "#262424",
+				"dark": "#010101",
 				"contrastText": "#fff"
 			},
 			"error": {
-				"light": "#e57373",
-				"main": "#f44336",
-				"dark": "#d32f2f",
+				"light": "#FF3C19",
+				"main": "#E22300",
+				"dark": "#961700",
 				"contrastText": "#fff"
 			},
 			"warning": {
-				"light": "#ffb74d",
-				"main": "#ff9800",
-				"dark": "#f57c00",
+				"light": "#FAD52F",
+				"main": "#FAA622",
+				"dark": "#FA6416",
 				"contrastText": "rgba(0, 0, 0, 0.87)"
 			},
 			"info": {
-				"light": "#64b5f6",
-				"main": "#2196f3",
-				"dark": "#1976d2",
+				"light": "#2BDFFF",
+				"main": "#0DA3BC",
+				"dark": "#046070",
 				"contrastText": "#fff"
 			},
 			"success": {
-				"light": "#81c784",
-				"main": "#4caf50",
-				"dark": "#388e3c",
+				"light": "#DDFF19",
+				"main": "#BADC00",
+				"dark": "#798F00",
 				"contrastText": "rgba(0, 0, 0, 0.87)"
 			},
 			"grey": {
@@ -100,7 +100,7 @@ export const goldenTheme = createMuiTheme(
 			"divider": "rgba(0, 0, 0, 0.12)",
 			"background": {
 				"paper": "#fff",
-				"default": "#f6f4e6"
+				"default": "#f8faf7"
 			},
 			"action": {
 				"active": "rgba(0, 0, 0, 0.54)",

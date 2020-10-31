@@ -2,6 +2,7 @@ import React from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import TableProductCollapse from './TableProductCollapse/TableProductCollapse';
 import TableSortSelect from './TableSortSelect/';
+import NavTabs from '../NavTabs';
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'firstName', headerName: 'First name', width: 130 },
@@ -36,7 +37,9 @@ const rows = [
 ];
 function TableProduct() {
     return (
-            <TableSortSelect/>
+        <>
+            <NavTabs><TableSortSelect/></NavTabs>
+        </>
     );
 }
 
