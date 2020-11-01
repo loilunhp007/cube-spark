@@ -24,7 +24,7 @@ import Menu from "@material-ui/icons/Menu";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import compose from "recompose/compose";
-import Header from "../Header/Header";
+import Header from "../Header";
 const drawerWidth = 240;
 
 const styles = (theme) => {
@@ -107,8 +107,8 @@ const FuseNavbar = (props) => {
         </MenuItem>
         <MenuItem component={Link} to="/writers" selected={"/writers" === pathname} >
           Writers
-        </MenuItem>   
-  {/* DROP down*/}  
+        </MenuItem>
+  {/* DROP down*/}
         <MenuItem component={Button} className={classes.buttonNav} drop-index={1} variant="text" onClick={handleDropdown}>
           toggle
         </MenuItem>
@@ -125,7 +125,7 @@ const FuseNavbar = (props) => {
             })}
           </MenuList>
         </Collapse>
-  {/* End DROP down*/}  
+  {/* End DROP down*/}
         <MenuItem component={Button} className={classes.buttonNav} drop-index={1} variant="text" onClick={handleDropdown}>
           toggle
         </MenuItem>

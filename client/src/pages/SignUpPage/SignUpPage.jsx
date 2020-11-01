@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Writers() {
+function SignUpPage() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Writers() {
     )
 }
 
-export default Writers
+export default SignUpPage

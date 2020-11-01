@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import TableProduct from '../TableProduct/TableProduct';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,7 +64,7 @@ function NavTabs(props) {
   const childrens = props.children;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  console.log(childrens);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -83,10 +84,10 @@ function NavTabs(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {childrens}
+        <TableProduct/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Page Two
+        <TableProduct/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Page Three

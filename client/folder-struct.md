@@ -1,13 +1,38 @@
 ```
-src
-├─ assets
-├─ components 
-├─ containers
-├─ config
-├─ reducers
-├─ routes
-├─ services
-└─ ultils
+└── src
+    ├── actions
+    │   ├── articleActions.js
+    │   ├── categoryActions.js
+    │   └── userActions.js
+    ├── api
+    │   ├── apiHandler.js
+    │   ├── articleApi.js
+    │   ├── categoryApi.js
+    │   └── userApi.js
+    ├── components
+    │   └── ArticleComponent.jsx
+    ├── containers
+    │   └── ArticleContainer.js
+    ├── index.js
+    ├── pages
+    │   ├── CategoryPage
+    │   │   ├── CategoryPageContainer.js
+    │   │   └── components
+    │   │       └── CategoryPageComponent.jsx
+    │   └── HomePage
+    │       ├── components
+    │       │   ├── ArticleListComponent.jsx
+    │       │   ├── CategoryComponent.jsx
+    │       │   └── HomePageComponent.jsx
+    │       └── HomePageContainer.js
+    ├── reducers
+    │   ├── articleReducer.js
+    │   ├── categoryReducer.js
+    │   └── userReducer.js
+    ├── routes.js
+    ├── store.js
+    └── utils
+        └── authUtils.js
 ```
 ## **assets**
 Đây là thư mục chứa các tài nguyên như fonts, icons, ảnh svg hoặc jpg. Tuỳ theo yêu cầu của dự án mà bạn có thể tạo thêm các thư mục con như fonts, icons, images…

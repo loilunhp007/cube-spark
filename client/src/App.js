@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
-
 import FuseNavbar from './components/FuseNavbar/FuseNavbar'
-import Product from './containers/Product'
-import NotFound from './containers/errors/NotFound'
-import { Button } from '@material-ui/core'
+import NotFound from './pages/ErrorsPage/NotFound'
 import { ThemeContext } from './ultils/themes/ThemeProvider'
+import LoginPage from './pages/LoginPage/LoginPage'
+import SignUpPage from './pages/SignUpPage/SignUpPage'
+import ProductPage from './pages/ProductPage/ProductPage'
 
 
 export default function App (){
   const [writers, setWriters] = useState([]);
   const [testAPI, setTestAPI] = useState({name:null});
+  const [login, setLogin] = useState({isLogin:true});
   const setThemeName = useContext(ThemeContext);
   //Fecth data from server
   async function fetchData(){
@@ -80,51 +81,20 @@ export default function App (){
   useEffect(() => {
     //console.log(writers)
   }, [writers])
-  return <BrowserRouter>
+  return login.isLogin ? 
+  <BrowserRouter>
   <FuseNavbar writers={writers} multiTheme={setThemeName}>
     <Switch>
       <Route exact path="/" render={() => <div>name:{testAPI.name}</div>} />
-      <Route exact path="/products" render={() => <Product/>} />
+      <Route exact path="/products" render={() => <ProductPage/>} />
       <Route component={NotFound} />
     </Switch>
   </FuseNavbar>
-  </BrowserRouter>
-}/*
-class App extends Component {
-  state = {
-    writers: []
-  }
-
-  async componentDidMount() {
-    const writers = await (await fetch('http://localhost:3001/writers?_embed=texts')).json()
-
-    this.setState({ writers })
-    console.log("sucess \n" + this.state);
-  }
-
-  render() {
-    const { writers } = this.state
-    
-    return <BrowserRouter>
-    <FuseNavbar writers={writers}>
+  </BrowserRouter> :
+  <BrowserRouter>
     <Switch>
-
-      <Route component={NotFound}/>
+      <Route exact path="/" render={()=> <LoginPage multiTheme={setThemeName}/>}/>
+      <Route exact path="sign-up" render={ () => <SignUpPage/>}/>
     </Switch>
-    </FuseNavbar>
-  </BrowserRouter>
-  }
-}*/
-/*
-      <Router>
-        <div writers={writers}>
-        <Switch>
-          <Route path='/' exact={true} component={Home}/>
-          <Route path='/authorization' exact={true} component={Authorization} />
-          <Route component={NotFound}/>
-        </Switch>
-        </div>
-      </Router>
-<Route path='/writers' render={
-  props => <Writers {...props} writers={writers}/>
-}/>*/
+  </BrowserRouter> 
+}
