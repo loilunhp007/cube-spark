@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +16,8 @@ import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import { IconButton } from '@material-ui/core';
+import themeMap from '../../ultils/themes/base';
+import ThemeSwitchIcon from '../../components/ThemeSwitchIcon/ThemeSwitchIcon';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -54,18 +56,16 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginPage(props) {
   const classes = useStyles();
-  const { setThemeName } = props;
+  const { multiTheme } = props;
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid container xs={false} sm={4} md={7} className={classes.image}>
+      <Grid container xs={false} sm={4} md={8} className={classes.image}>
       </Grid>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
         <Grid container xs={12} direction="row" justify="space-evenly" alignItems="center">
-          <IconButton aria-label="delete" variant="contained" color="primary" onClick={() => { console.log("click") }} className={classes.themeButton}>
-            <Brightness7Icon fontSize="medium" />
-          </IconButton>
+          <ThemeSwitchIcon multiTheme={multiTheme}/>
         </Grid>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -132,7 +132,7 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage
+export default LoginPage;
 
 function Copyright() {
   return (

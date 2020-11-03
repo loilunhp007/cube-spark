@@ -31,7 +31,7 @@ export const goldenTheme = createMuiTheme(
 			}
 		},
 		"overrides": {},
-		"palette": {
+		palette: {
 			"common": {
 				"black": "#000",
 				"white": "#fff"
@@ -111,7 +111,7 @@ export const goldenTheme = createMuiTheme(
 				"disabled": "rgba(0, 0, 0, 0.26)",
 				"disabledBackground": "rgba(0, 0, 0, 0.12)",
 				"disabledOpacity": 0.38,
-				"focus": "rgba(0, 0, 0, 0.12)",
+				"focus": "rgba(255, 255, 255, 0.12)",
 				"focusOpacity": 0.12,
 				"activatedOpacity": 0.12
 			}
@@ -275,5 +275,4 @@ export const goldenTheme = createMuiTheme(
 			"snackbar": 1400,
 			"tooltip": 1500
 		}
-
 	})

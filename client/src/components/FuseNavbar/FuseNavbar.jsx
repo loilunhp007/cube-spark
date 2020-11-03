@@ -1,21 +1,15 @@
 import React, { useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   AppBar,
-  Box,
   Button,
   Collapse,
   CssBaseline,
   Drawer,
-  Fade,
   Hidden,
   IconButton,
   MenuItem,
   MenuList,
-  Popper,
   Toolbar,
   Typography,
 } from "@material-ui/core";
@@ -25,6 +19,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import compose from "recompose/compose";
 import Header from "../Header";
+import ThemeSwitchIcon from "../ThemeSwitchIcon/ThemeSwitchIcon";
 const drawerWidth = 240;
 
 const styles = (theme) => {
@@ -79,8 +74,6 @@ const FuseNavbar = (props) => {
     writers,
     multiTheme
   } = props;
-
-  const setThemeName = multiTheme;
   const handleDropdown = (event) => {
     setDropSwitcher((dropSwitcher == event.currentTarget.getAttribute("drop-index") ? -1 : event.currentTarget.getAttribute("drop-index")));
     console.log(event.currentTarget.getAttribute("drop-index"))
@@ -126,7 +119,7 @@ const FuseNavbar = (props) => {
           </MenuList>
         </Collapse>
   {/* End DROP down*/}
-        <MenuItem component={Button} className={classes.buttonNav} drop-index={1} variant="text" onClick={handleDropdown}>
+        <MenuItem component={Button} className={classes.buttonNav} drop-index={2} variant="text" onClick={handleDropdown}>
           toggle
         </MenuItem>
 
@@ -163,30 +156,7 @@ const FuseNavbar = (props) => {
             <Typography variant="h6" color="inherit" noWrap>
               Writers Blog
             </Typography>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              onClick={() => {setThemeName("lightTheme")}}
-            >
-              Light
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="secondary"
-              onClick={() => setThemeName("darkTheme")}
-            >
-              Dark
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              onClick={() => {setThemeName("goldenTheme")}}
-            >
-              Golden
-            </Button>
+            <ThemeSwitchIcon multiTheme={multiTheme}/>
           </Toolbar>
         </AppBar>
         <Hidden mdUp>

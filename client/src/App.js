@@ -7,6 +7,7 @@ import { ThemeContext } from './ultils/themes/ThemeProvider'
 import LoginPage from './pages/LoginPage/LoginPage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import ProductPage from './pages/ProductPage/ProductPage'
+import HomePage from './pages/HomePage/HomePage'
 
 
 export default function App (){
@@ -85,7 +86,7 @@ export default function App (){
   <BrowserRouter>
   <FuseNavbar writers={writers} multiTheme={setThemeName}>
     <Switch>
-      <Route exact path="/" render={() => <div>name:{testAPI.name}</div>} />
+      <Route exact path="/" render={() => <HomePage/>} />
       <Route exact path="/products" render={() => <ProductPage/>} />
       <Route component={NotFound} />
     </Switch>

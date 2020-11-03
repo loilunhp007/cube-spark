@@ -5,7 +5,8 @@ import {goldenTheme} from './golden'
 export default function getThemeByName(theme){
     return themeMap[theme];
 }
-const themeMap={
+
+export const themeMap={
     lightTheme,
     darkTheme,
     goldenTheme
