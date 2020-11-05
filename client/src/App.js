@@ -88,6 +88,7 @@ export default function App (){
     <Switch>
       <Route exact path="/" render={() => <HomePage/>} />
       <Route exact path="/products" render={() => <ProductPage/>} />
+      <Route exact path="/laz-orders" />
       <Route component={NotFound} />
     </Switch>
   </FuseNavbar>
