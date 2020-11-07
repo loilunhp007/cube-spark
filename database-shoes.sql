@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: sql12.freemysqlhosting.net    Database: sql12372346
+-- Host: localhost    Database: shoe
 -- ------------------------------------------------------
--- Server version	5.5.62-0ubuntu0.14.04.1
+-- Server version	5.5.5-10.4.14-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -170,8 +170,8 @@ CREATE TABLE `goods_received_note_item` (
   `price` decimal(15,2) NOT NULL COMMENT 'Giá nhập của sản phẩm',
   PRIMARY KEY (`grn_id`,`shop_sku`),
   KEY `fk_grni_sku` (`shop_sku`),
-  CONSTRAINT `fk_grni_sku` FOREIGN KEY (`shop_sku`) REFERENCES `sku` (`shop_sku`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_grni_grn` FOREIGN KEY (`grn_id`) REFERENCES `goods_received_note` (`grn_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_grni_grn` FOREIGN KEY (`grn_id`) REFERENCES `goods_received_note` (`grn_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_grni_sku` FOREIGN KEY (`shop_sku`) REFERENCES `sku` (`shop_sku`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -233,16 +233,16 @@ LOCK TABLES `image_product` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
+-- Table structure for table `laz_order`
 --
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `laz_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
+CREATE TABLE `laz_order` (
   `order_id` varchar(20) NOT NULL COMMENT 'Mã đơn hàng. Lấy từ lazop',
   `create_date` datetime NOT NULL COMMENT 'Ngày lập',
-  `update_date` varchar(100) NOT NULL COMMENT 'Cập nhật lần cuối',
+  `update_date` datetime NOT NULL COMMENT 'Cập nhật lần cuối',
   `payment_method` varchar(100) NOT NULL COMMENT 'Phương thức thanh toán',
   `shipping_fee` decimal(15,2) NOT NULL COMMENT 'Tổng phí ship của đơn hàng còn phải trả',
   `price` int(10) NOT NULL COMMENT 'Tổng giá trị đơn hàng',
@@ -252,22 +252,22 @@ CREATE TABLE `order` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `laz_order`
 --
 
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+LOCK TABLES `laz_order` WRITE;
+/*!40000 ALTER TABLE `laz_order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `laz_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_item`
+-- Table structure for table `laz_order_item`
 --
 
-DROP TABLE IF EXISTS `order_item`;
+DROP TABLE IF EXISTS `laz_order_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order_item` (
+CREATE TABLE `laz_order_item` (
   `order_id` varchar(20) NOT NULL COMMENT 'Mã đơn hàng',
   `shop_sku` varchar(50) NOT NULL COMMENT 'Mã stock keeping unit do hệ thống laz tự động đặt. Khóa ShopSku là duy nhất',
   `seller_sku` varchar(50) NOT NULL COMMENT 'Mã stock keeping unit do người dùng đặt hoặc hệ thống tự tạo khi người dùng không đặt. Mã SellerSku là duy nhất',
@@ -278,18 +278,43 @@ CREATE TABLE `order_item` (
   `quantity` int(10) NOT NULL COMMENT 'Số lượng',
   PRIMARY KEY (`order_id`,`shop_sku`),
   KEY `fk_orderitem_sku` (`shop_sku`),
-  CONSTRAINT `fk_orderitem_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_item_order` FOREIGN KEY (`order_id`) REFERENCES `laz_order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_orderitem_sku` FOREIGN KEY (`shop_sku`) REFERENCES `sku` (`shop_sku`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_item`
+-- Dumping data for table `laz_order_item`
 --
 
-LOCK TABLES `order_item` WRITE;
-/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
+LOCK TABLES `laz_order_item` WRITE;
+/*!40000 ALTER TABLE `laz_order_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `laz_order_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permision`
+--
+
+DROP TABLE IF EXISTS `permision`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permision` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_name` varchar(100) DEFAULT NULL,
+  `action_code` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permision`
+--
+
+LOCK TABLES `permision` WRITE;
+/*!40000 ALTER TABLE `permision` DISABLE KEYS */;
+INSERT INTO `permision` VALUES (1,'Quản lý kho','WAREHOUSE'),(2,'Quản lý sản phẩm','PRODUCT'),(3,'Quản lý laz order','LAZORDER'),(4,'Quản lý hóa đơn local','LOCALBILL'),(5,'Quản lý khách hàng local','LOCALCUSTOMER'),(6,'Thống kê','ANALYSIS');
+/*!40000 ALTER TABLE `permision` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -302,6 +327,7 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `product_id` varchar(20) NOT NULL COMMENT 'Mã giày',
   `category_id` varchar(20) NOT NULL COMMENT 'Mã loại',
+  `seller_id` int(11) DEFAULT NULL,
   `brand` varchar(50) NOT NULL COMMENT 'Tên nhãn hiệu. Mặc định là “No Brand”',
   `shoes_name` varchar(255) NOT NULL COMMENT 'Tên giày',
   `short_desciption` text NOT NULL COMMENT 'Mô tả ngắn về sản phẩm',
@@ -309,7 +335,9 @@ CREATE TABLE `product` (
   `status` varchar(20) NOT NULL COMMENT 'Khoảng giá trị:  “active, inactive, deleted”',
   PRIMARY KEY (`product_id`),
   KEY `fk_product_category` (`category_id`),
-  CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_product_seller_idx` (`seller_id`),
+  CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_seller` FOREIGN KEY (`seller_id`) REFERENCES `seller_account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -320,6 +348,120 @@ CREATE TABLE `product` (
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'Owner','Chủ gian hàng'),(2,'Staff','Nhân viên gian hàng');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_permision`
+--
+
+DROP TABLE IF EXISTS `role_permision`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role_permision` (
+  `role_id` int(11) NOT NULL,
+  `permision_id` int(11) NOT NULL,
+  `status` int(11) DEFAULT NULL COMMENT 'Giá trị khả dụng: 1,0. Thể hiện cho trạng thái kích hoạt và vô hiệu hóa permision cho role',
+  KEY `fk_role_permision_role_idx` (`role_id`),
+  KEY `fk_role_permision_permision_idx` (`permision_id`),
+  CONSTRAINT `fk_role_permision_permision` FOREIGN KEY (`permision_id`) REFERENCES `permision` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_role_permision_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_permision`
+--
+
+LOCK TABLES `role_permision` WRITE;
+/*!40000 ALTER TABLE `role_permision` DISABLE KEYS */;
+INSERT INTO `role_permision` VALUES (1,1,1),(1,2,1),(1,3,1),(1,4,1),(1,5,1),(1,6,1),(2,1,1),(2,2,1),(2,3,1),(2,4,1),(2,5,1),(2,6,0);
+/*!40000 ALTER TABLE `role_permision` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seller_account`
+--
+
+DROP TABLE IF EXISTS `seller_account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `seller_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `phone_number` varchar(13) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `laz_app_key` varchar(255) DEFAULT NULL,
+  `laz_app_secret` varchar(255) DEFAULT NULL,
+  `laz_access_token` varchar(255) DEFAULT NULL,
+  `laz_access_expires` int(11) DEFAULT NULL COMMENT 'Thời hạn của token. Tính bằng giây. Tồn tại 7 ngày đối với app test. 30 ngày đối với app online.',
+  `laz_refresh_token` varchar(255) DEFAULT NULL,
+  `laz_refresh_expires` int(11) DEFAULT NULL COMMENT 'Thời hạn của refresh token. Tính bằng giây. Tồn tại 30 ngày đối với app test. 180 ngày đối với app online.',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seller_account`
+--
+
+LOCK TABLES `seller_account` WRITE;
+/*!40000 ALTER TABLE `seller_account` DISABLE KEYS */;
+INSERT INTO `seller_account` VALUES (1,'Tran','Long','01864173116','tranphanthanhlong18@gmail.com','Password789','122973','Yw6g8EvzqBQSF628Q5ZwcC2uNiI60ZSS',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `seller_account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seller_role`
+--
+
+DROP TABLE IF EXISTS `seller_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `seller_role` (
+  `seller_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`seller_id`,`role_id`),
+  KEY `fk_seller_role_role_idx` (`role_id`),
+  CONSTRAINT `fk_seller_role_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_seller_role_seller` FOREIGN KEY (`seller_id`) REFERENCES `seller_account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seller_role`
+--
+
+LOCK TABLES `seller_role` WRITE;
+/*!40000 ALTER TABLE `seller_role` DISABLE KEYS */;
+INSERT INTO `seller_role` VALUES (1,1);
+/*!40000 ALTER TABLE `seller_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -370,4 +512,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-28 19:41:01
+-- Dump completed on 2020-11-07 14:36:26
