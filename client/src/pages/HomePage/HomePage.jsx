@@ -14,21 +14,16 @@ const randomNumber = ()=> {
   return 1000+Math.random();
 }
 export default function HomePage() {
-  const hobbyState = useSelector(state => ({ 
-    list: state.hobby.list,
-    activeId: state.hobby.activeId,
-  }))
-
+  const hobbyList = useSelector(state=>(state.hobby.list));
   const dispatch = useDispatch();
-  console.log(hobbyState.list);
+  console.log(hobbyList);
   const handleAddHobbyClick = ()=>{
     const newId = randomNumber();
     const newHobby = {
       id: newId,
       title: `title ${newId}`,
     }
-    const action = addNewHobby(newHobby);
-    dispatch(action);
+    dispatch(addNewHobby(newHobby));
   }
   
   return (
@@ -38,7 +33,7 @@ export default function HomePage() {
       </Grid>
       <Grid item xs={8}>
         <Grid container direction="column">
-        {hobbyState.list.map((hobby)=>{
+        {hobbyList.map((hobby)=>{
           return (<Typography key={hobby.id} >{hobby.title}</Typography>)
         })}
         </Grid>

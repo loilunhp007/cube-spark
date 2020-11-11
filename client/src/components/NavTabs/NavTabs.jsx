@@ -21,7 +21,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -63,8 +63,7 @@ const useStyles = makeStyles((theme) => ({
 function NavTabs(props) {
   const childrens = props.children;
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  console.log(childrens);
+  const [value, setValue] = React.useState(1);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -78,9 +77,12 @@ function NavTabs(props) {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
+          <LinkTab label="Tất cả" href="/all" {...a11yProps(0)} />
+          <LinkTab label="Đang xử lý" href="/pending" {...a11yProps(1)} />
+          <LinkTab label="Sẵn sàng giao" href="/rts" {...a11yProps(2)} />
+          <LinkTab label="Đang giao hàng" href="/shipped" {...a11yProps(3)} />
+          <LinkTab label="Đã giao hàng" href="/delivered" {...a11yProps(4)} />
+          <LinkTab label="Đã hủy" href="/canceled" {...a11yProps(5)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -91,6 +93,15 @@ function NavTabs(props) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Page Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Page Four
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Page Five
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Page Sĩ
       </TabPanel>
     </div>
   );

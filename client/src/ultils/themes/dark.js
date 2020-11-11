@@ -44,10 +44,10 @@ export const darkTheme = createMuiTheme(
             "contrastText": "#fff"
           },
           "secondary": {
-            "light": "#ff4081",
-            "main": "#f50057",
-            "dark": "#c51162",
-            "contrastText": "#fff"
+            "light": "#FFFF50",
+            "main": "#fddb3a",
+            "dark": "#E6C222",
+            "contrastText": "#41444b"
           },
           "error": {
             "light": "#e57373",

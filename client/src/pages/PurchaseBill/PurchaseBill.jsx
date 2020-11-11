@@ -1,11 +1,12 @@
 import React from 'react'
 import NavTabs from '../../components/NavTabs/NavTabs'
 
-function ProductPage() {
+const PurchaseBill = () => {
     return (
-        <div>           
+        <div>
+            <NavTabs/>
         </div>
     )
 }
 
-export default ProductPage
+export default PurchaseBill

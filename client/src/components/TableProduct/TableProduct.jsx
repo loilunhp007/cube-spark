@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import TableProductCollapse from './TableProductCollapse/TableProductCollapse';
 import TableSortSelect from './TableSortSelect';
@@ -35,6 +35,12 @@ const rows = [
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 function TableProduct() {
+    useEffect(() => {
+        "table product component did mount"
+        return () => {
+        
+        }
+    }, [])
     return (
             <TableSortSelect />
     );
