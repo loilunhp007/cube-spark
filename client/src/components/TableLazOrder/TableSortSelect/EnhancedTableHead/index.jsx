@@ -7,17 +7,14 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 /* load data Head */
 const headCells = [
-	{ id: 'name', numeric: false, disablePadding: true, label: 'Tên' },
-	{ id: 'seller-sku', numeric: true, disablePadding: false, label: 'Seller SKU' },
-	{ id: 'create-date', numeric: true, disablePadding: false, label: 'Đã tạo' },
-	{ id: 'price', numeric: true, disablePadding: false, label: 'Giá gốc' },
-	{ id: 'special-price', numeric: true, disablePadding: false, label: 'Giá bán' },
-	{ id: 'available-quantity', numeric: true, disablePadding: false, label: 'Sẵn có' },
-	{ id: 'status', numeric: true, disablePadding: false, label: 'Hiển thị' },
-	{ id: 'actions', numeric: true, disablePadding: false, label: 'Thao tác' }
+	{ id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
+	{ id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
+	{ id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
+	{ id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
+	{ id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 function EnhancedTableHead(props) {
-	const { classes, order, orderBy, onRequestSort } = props;
+	const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property);
 	};
@@ -25,6 +22,17 @@ function EnhancedTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow>
+				<TableCell padding="checkbox">
+					<Checkbox
+						indeterminate={numSelected > 0 && numSelected < rowCount}
+						checked={rowCount > 0 && numSelected === rowCount}
+						onChange={onSelectAllClick}
+						inputProps={{ 'aria-label': 'select all desserts' }}
+					/>
+				</TableCell>
+				<TableCell>
+					{/* column colapse */}
+				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
