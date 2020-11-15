@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import tik.test.cubespark.repository.SkuRepository;
+import tik.test.cubespark.repository.Product.SkuRepository;
 
 @SpringBootApplication
 public class Application {

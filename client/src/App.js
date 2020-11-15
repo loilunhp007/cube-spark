@@ -5,6 +5,7 @@ import LoggedRoute from './routes/LoggedRoute'
 import UnloggedRoute from './routes/UnloggedRoute'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionLogin } from './actions/user'
+import api from './ultils/api'
 
 
 export default function App (){
@@ -13,7 +14,15 @@ export default function App (){
 
   //componentDidMount
   useEffect(() => {    
-    
+    async function getProduct(){
+      await api.get('/products/get')
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err)
+        })
+    }
+    getProduct();
   }, [])
 
   //componentDidUpdate

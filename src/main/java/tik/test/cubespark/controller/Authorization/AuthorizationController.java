@@ -1,4 +1,4 @@
-package tik.test.cubespark.controller;
+package tik.test.cubespark.controller.Authorization;
 
 import java.awt.Image;
 import java.lang.reflect.Array;
@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import tik.test.cubespark.model.ModelProduct;
-import tik.test.cubespark.model.Product;
-import tik.test.cubespark.repository.SkuRepository;
+import tik.test.cubespark.model.Product.Product;
+import tik.test.cubespark.repository.Product.SkuRepository;
 import tik.test.cubespark.service.AccessToken;
 import tik.test.cubespark.service.ProductService;
 import tik.test.cubespark.service.SkuService;

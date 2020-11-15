@@ -1,4 +1,4 @@
-package tik.test.cubespark.model;
+package tik.test.cubespark.model.Product;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
