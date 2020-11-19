@@ -1,10 +1,9 @@
 import React from 'react'
-import NavTabs from '../../components/NavTabs/NavTabs'
 
 const PurchaseBill = () => {
     return (
         <div>
-            <NavTabs/>
+PurchaseBill
         </div>
     )
 }

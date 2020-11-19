@@ -8,7 +8,7 @@ export default function getThemeByName(theme){
 }
 
 export const themeMap={
-    lightTheme,
     darkTheme,
+    lightTheme,
     goldenTheme
 }

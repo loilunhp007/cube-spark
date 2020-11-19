@@ -1,10 +1,9 @@
 import React from 'react'
-import NavTabs from '../../components/NavTabs/NavTabs'
 
 const LocalBillPage=()=>{
 
     return(<div>
-        <NavTabs/>
+        Bill Page
     </div>)
 }
 export default LocalBillPage

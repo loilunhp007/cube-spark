@@ -10,6 +10,7 @@ import LocalBillPage from '../pages/LocalBillPage/LocalBillPage'
 import LocalNewpublishBillPage from '../pages/LocalNewpublishBillPage/LocalNewpublishBillPage'
 import ProductNewpublishPage from '../pages/ProductNewpublishPage/ProductNewpublishPage'
 import ProductPage from '../pages/ProductPage/ProductPage'
+import ProductUpdatePage from '../pages/ProductUpdatePage/ProductUpdatePage'
 import PurchaseBill from '../pages/PurchaseBill'
 import PurchaseOrder from '../pages/PurchaseOrder/'
 import RecivedNotePage from '../pages/RecivedNotePage/'
@@ -25,6 +26,7 @@ const LoggedRoute = (props) => {
             <Route exact path="/warehouse/bill/portal" render={() => <PurchaseBill/>} />
             <Route exact path="/product/portal" render={() => <ProductPage/>} />
             <Route exact path="/product/newpublish" render={() => <ProductNewpublishPage/>} />
+            <Route path="/product/:product_id" component={ProductUpdatePage} />
             <Route exact path="/laz-order" render={() => <LazOrderPage/>} />
             <Route exact path="/order-local/newpublish" render={() => <LocalNewpublishBillPage/>} />
             <Route exact path="/order-local/portal" render={() => <LocalBillPage/>} />

@@ -44,20 +44,22 @@ function ThemeSwitchIcon(props) {
     const classes = useStyles();
     const { multiTheme } = props;
     const setThemeName = multiTheme;
-    const [currentTheme, setCurrentTheme] = useState("goldenTheme");
+    const [currentTheme, setCurrentTheme] = useState(localStorage.getItem('theme')!==undefined? localStorage.getItem('theme'): 'darkTheme');
     const nameList = Object.keys(themeMap);
 
     const handleChangeTheme = (event) => {
-        setThemeName(nameList[nameList.indexOf(currentTheme) === nameList.length - 1 ? 0 : nameList.indexOf(currentTheme) + 1]);
+        //setThemeName(nameList[nameList.indexOf(currentTheme) === nameList.length - 1 ? 0 : nameList.indexOf(currentTheme) + 1]);
         setCurrentTheme(nameList[nameList.indexOf(currentTheme) === nameList.length - 1 ? 0 : nameList.indexOf(currentTheme) + 1]);
+        setThemeName(currentTheme);
+        localStorage.setItem('theme' ,currentTheme);
     }
 
     return (
         <IconButton aria-label="delete" variant="contained" color="secondary" onClick={handleChangeTheme} className={classes.themeButton}>
             {
               {
-                'lightTheme': <Brightness7Icon/>,
                 'darkTheme': <Brightness2Icon/>,
+                'lightTheme': <Brightness7Icon/>,
                 'goldenTheme': <Brightness5Icon/>
               }[currentTheme]
             }

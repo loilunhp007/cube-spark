@@ -1,10 +1,10 @@
 import React from 'react'
-import NavTabs from '../../components/NavTabs/NavTabs';
+import LazOrderComp from '../../components/LazOrderComp/LazOrderComp';
 
 const LazOrderPage=()=>{
 
     return(<div>
-        <NavTabs/>
+        <LazOrderComp/>
     </div>)
 }
 export default LazOrderPage;

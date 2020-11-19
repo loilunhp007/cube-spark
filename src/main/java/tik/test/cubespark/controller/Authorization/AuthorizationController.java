@@ -28,11 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import tik.test.cubespark.model.ModelProduct;
-import tik.test.cubespark.model.Product.Product;
 import tik.test.cubespark.repository.Product.SkuRepository;
 import tik.test.cubespark.service.AccessToken;
-import tik.test.cubespark.service.ProductService;
 import tik.test.cubespark.service.SkuService;
+import tik.test.cubespark.service.ProductService.ProductService;
 
 @RestController
 @RequestMapping("/auth")

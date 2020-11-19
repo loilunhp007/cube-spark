@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import TableProductCollapse from './TableProductCollapse/TableProductCollapse';
-import TableSortSelect from './TableSortSelect';
+import TableProduct from './TableProduct/TableProduct';
+import NavTabs from './NavTabs';
+import SearchProduct from './SearchProduct';
+
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'firstName', headerName: 'First name', width: 130 },
@@ -34,16 +37,25 @@ const rows = [
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
-function TableProduct() {
+function ProductComp() {
+    const [search, setSearch] = useState({
+        name: ``,
+        sellerSku: ``,
+        shopSku: `3001`,
+        statement: ``
+    })
     useEffect(() => {
         "table product component did mount"
         return () => {
-        
+
         }
     }, [])
     return (
-            <TableSortSelect />
+        <div>
+            <SearchProduct search={search} />
+            <NavTabs search={search} />
+        </div>
     );
 }
 
-export default TableProduct
+export default ProductComp

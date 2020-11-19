@@ -7,14 +7,13 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 /* load data Head */
 const headCells = [
-	{ id: 'name', numeric: false, disablePadding: true, label: 'Tên' },
-	{ id: 'seller-sku', numeric: true, disablePadding: false, label: 'Seller SKU' },
-	{ id: 'create-date', numeric: true, disablePadding: false, label: 'Đã tạo' },
-	{ id: 'price', numeric: true, disablePadding: false, label: 'Giá gốc' },
-	{ id: 'special-price', numeric: true, disablePadding: false, label: 'Giá bán' },
-	{ id: 'available-quantity', numeric: true, disablePadding: false, label: 'Sẵn có' },
-	{ id: 'status', numeric: true, disablePadding: false, label: 'Hiển thị' },
-	{ id: 'actions', numeric: true, disablePadding: false, label: 'Thao tác' }
+	{ id: 'name', numeric: false, disablePadding: false, label: 'Tên' },
+	{ id: 'sellerSku', numeric: false, disablePadding: false, label: 'Seller SKU' },
+	{ id: 'originPrice', numeric: false, disablePadding: false, label: 'Giá gốc' },
+	{ id: 'price', numeric: false, disablePadding: false, label: 'Giá bán' },
+	{ id: 'available', numeric: false, disablePadding: false, label: 'Sẵn có' },
+	{ id: 'status', numeric: false, disablePadding: false, label: 'Hiển thị' },
+	{ id: 'actions', numeric: false, disablePadding: false, label: 'Thao tác' }
 ];
 function EnhancedTableHead(props) {
 	const { classes, order, orderBy, onRequestSort } = props;
@@ -31,6 +30,7 @@ function EnhancedTableHead(props) {
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'default'}
 						sortDirection={orderBy === headCell.id ? order : false}
+
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}

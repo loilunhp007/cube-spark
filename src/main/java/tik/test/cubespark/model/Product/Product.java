@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
 @Entity
 @Data
 public class Product {
@@ -35,3 +35,4 @@ public class Product {
 	@Column(name = "status")
 	private String status;
 }
+*/

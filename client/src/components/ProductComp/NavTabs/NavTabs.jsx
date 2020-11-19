@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,7 +6,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TableProduct from '../TableProduct';
+import { useDispatch, useSelector } from 'react-redux';
+import TableProduct from '../TableProduct/TableProduct';
+import api from '../../../ultils/api';
+import { getProducts } from '../../../actions/product';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NavTabs(props) {
-  const childrens = props.children;
+  const search = props.search;
   const classes = useStyles();
   const [value, setValue] = React.useState(1);
   const handleChange = (event, newValue) => {
@@ -77,31 +80,23 @@ function NavTabs(props) {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Tất cả" href="/all" {...a11yProps(0)} />
-          <LinkTab label="Đang xử lý" href="/pending" {...a11yProps(1)} />
-          <LinkTab label="Sẵn sàng giao" href="/rts" {...a11yProps(2)} />
-          <LinkTab label="Đang giao hàng" href="/shipped" {...a11yProps(3)} />
-          <LinkTab label="Đã giao hàng" href="/delivered" {...a11yProps(4)} />
-          <LinkTab label="Đã hủy" href="/canceled" {...a11yProps(5)} />
+          <LinkTab key={1} label="Tất cả" href="/all" {...a11yProps(0)} />
+          <LinkTab key={2} label="Có thể mua" href="/can-buy" {...a11yProps(1)} />
+          <LinkTab key={3} label="Hết hàng" href="/sold-out" {...a11yProps(2)} />
+          <LinkTab key={4} label="Đã tắt" href="/inactive" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <TableProduct/>
+      <TabPanel value={value} key={1} index={0}>
+        <TableProduct key={1} search={search}/>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TableProduct/>
+      <TabPanel value={value} key={2} index={1}>
+        <TableProduct  key={2} search={search}/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Page Three
+      <TabPanel value={value}  key={3} index={2}>
+        <TableProduct  key={3} search={search}/>
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        Page Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Page Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Page Sĩ
+      <TabPanel value={value} key={4} index={3}>
+        <TableProduct  key={4} search={search}/>
       </TabPanel>
     </div>
   );

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import tik.test.cubespark.model.Product.Sku;
 
-@Repository
-public interface SkuRepository extends JpaRepository<Sku, String>{
+public interface SkuRepository{
 	
 }

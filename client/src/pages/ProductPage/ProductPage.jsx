@@ -1,9 +1,11 @@
 import React from 'react'
-import NavTabs from '../../components/NavTabs/NavTabs'
+import { useRouteMatch } from 'react-router-dom';
+import ProductComp from '../../components/ProductComp/ProductComp'
 
 function ProductPage() {
     return (
-        <div>           
+        <div>    
+            <ProductComp/>
         </div>
     )
 }

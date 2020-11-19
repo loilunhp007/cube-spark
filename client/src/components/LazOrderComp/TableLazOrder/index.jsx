@@ -24,11 +24,11 @@ import { Box, Collapse } from '@material-ui/core';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import customizeSort from '../../../ultils/sort';
-import EnhancedTableHead from './TableSortSelect/EnhancedTableHead';
-import EnhancedTableToolbar from './TableSortSelect/EnhancedTableToolbar';
+import EnhancedTableToolbar from './EnhancedTableToolbar';
+import EnhancedTableHead from './EnhancedTableHead';
+
 function createData(name, calories, fat, carbs, protein, subContents) {
 	//let subContentArray = [...subContents];
-	console.log(subContents);
 	return {
 		name,
 		calories,
@@ -218,7 +218,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TableSortSelect = () => {
+const TableLazOrder = () => {
 	const classes = useStyles();
 	const [order, setOrder] = React.useState('asc');
 	const [orderBy, setOrderBy] = React.useState('calories');
@@ -412,4 +412,4 @@ const TableSortSelect = () => {
 	);
 }
 
-export default TableSortSelect
+export default TableLazOrder
