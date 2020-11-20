@@ -1,5 +1,6 @@
 package tik.test.cubespark.controller.Product;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.GET, value="")
 	public ResponseEntity<String> products(){
 		//TODO: get all products
-		return new ResponseEntity<String>("all products", HttpStatus.OK);
+		return new ResponseEntity<String>("test", HttpStatus.OK);
 	}
 	@RequestMapping(method = RequestMethod.GET, value="/get")
 	public ResponseEntity<String> productsGet(
