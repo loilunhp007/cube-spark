@@ -29,8 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/eclipse/jee/eclipse/plugins/lazop-api-sdk-1.2.0.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/jee/eclipse/plugins/lazop-api-sdk-1.2.0-sources.jar"/>
-	<classpathentry kind="lib" path="E:/repositories/mySQL-store/mysql-connector-java-8.0.22.jar"/>
+	<classpathentry kind="lib" path="E:/repositories/cube-spark/libs/lazop-api-sdk-1.2.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

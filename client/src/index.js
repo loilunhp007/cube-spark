@@ -1,9 +1,16 @@
+import ThemeProvider from './ultils/themes/ThemeProvider';
 import React from 'react';
-import {render} from 'react-dom';
-import './index.css';
+import { render } from 'react-dom';
 import App from './App';
+import { Provider } from 'react-redux';
+import store from './store';
+
 render(
-    <App />,
+  <Provider store={store}>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root')
 );
 
